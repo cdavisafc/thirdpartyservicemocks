@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Processor Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #status {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Payment Processor Status</h1>
+    <div id="status">Current Status: Unknown</div>
+    <button onclick="updateStatus(true)">Clear Errors</button>
+    <button onclick="updateStatus(false)">Set Random Error</button>
+
+    <script>
+        const BASE_URL = "http://localhost:8081";
+
+        async function updateStatus(clearErrors) {
+            try {
+                const response = await fetch(`${BASE_URL}/setstatus?clearErrors=${clearErrors}`, {
+                    method: "POST"
+                });
+                if (response.ok) {
+                    refreshStatus();
+                } else {
+                    document.getElementById("status").innerText = "Error updating status";
+                }
+            } catch (error) {
+                document.getElementById("status").innerText = "Error updating status";
+            }
+        }
+
+        async function refreshStatus() {
+            try {
+                const response = await fetch(`${BASE_URL}/haserrors`);
+                if (response.ok) {
+                    const hasErrors = await response.json();
+                    document.getElementById("status").innerText = `Current Status: ${hasErrors ? "Errors Present" : "No Errors"}`;
+                } else {
+                    document.getElementById("status").innerText = "Error fetching status";
+                }
+            } catch (error) {
+                document.getElementById("status").innerText = "Error fetching status";
+            }
+        }
+
+        // Initial status check
+        refreshStatus();
+    </script>
+</body>
+</html>
