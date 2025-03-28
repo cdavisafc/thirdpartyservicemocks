@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+import com.corneliadavis.temporal.thirdparties.shared.PaymentProcessingInput;
+import com.corneliadavis.temporal.thirdparties.shared.PaymentProcessingResult;
+
 @RestController
 public class PaymentProcessor {
 
@@ -43,9 +46,7 @@ public class PaymentProcessor {
             }
 
             // If successful
-            PaymentProcessingResult result = new PaymentProcessingResult(
-                    paymentInput.getName(),
-                    paymentInput.getOrderNumber());
+            PaymentProcessingResult result = new PaymentProcessingResult(java.util.UUID.randomUUID().toString());
             return ResponseEntity.ok(result);
 
         } catch (Exception e) {

@@ -39,6 +39,7 @@
     </dependencyManagement>
 
     <modules>
+        <module>shared</module>
         <module>controller</module>
     </modules>
 

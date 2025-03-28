@@ -1,13 +1,15 @@
-package com.corneliadavis.temporal.thirdparties.controller;
+package com.corneliadavis.temporal.thirdparties.shared;
 
 public class PaymentProcessingResult implements java.io.Serializable {
 
     String confirmationNumber;
-    Long ordernumber;
 
-    public PaymentProcessingResult(String confirmationNumber, Long ordernumber) {
+    public PaymentProcessingResult() {
+        // Default constructor
+    }
+
+    public PaymentProcessingResult(String confirmationNumber) {
         this.confirmationNumber = confirmationNumber;
-        this.ordernumber = ordernumber;
     }
 
     public String getConfirmationNumber() {
@@ -18,11 +20,4 @@ public class PaymentProcessingResult implements java.io.Serializable {
         this.confirmationNumber = confirmationNumber;
     }
 
-    public Long getOrdernumber() {
-        return ordernumber;
-    }
-
-    public void setOrdernumber(Long ordernumber) {
-        this.ordernumber = ordernumber;
-    }
 }

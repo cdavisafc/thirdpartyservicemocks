@@ -1,4 +1,4 @@
-package com.corneliadavis.temporal.thirdparties.controller;
+package com.corneliadavis.temporal.thirdparties.shared;
 
 public class PaymentProcessingInput {
 
@@ -7,17 +7,18 @@ public class PaymentProcessingInput {
     private String currency;
     private String paymentType;
     private String accountNumber;
-    private Long orderNumber;
+    private String expiry;
 
     public PaymentProcessingInput() {}
 
-    public PaymentProcessingInput(String name, double amount, String currency, String paymentType, String accountNumber, Long orderNumber) {
+    public PaymentProcessingInput(String name, double amount, String currency, String paymentType, 
+            String accountNumber, String expiry) {
         this.name = name;
         this.amount = amount;
         this.currency = currency;
         this.paymentType = paymentType;
         this.accountNumber = accountNumber;
-        this.orderNumber = orderNumber;
+        this.expiry = expiry;
     }
 
     public String getName() {
@@ -60,11 +61,11 @@ public class PaymentProcessingInput {
         this.accountNumber = accountNumber;
     }
 
-    public Long getOrderNumber() {
-        return orderNumber;
+    public String getExpiry() {
+        return expiry;
     }
 
-    public void setOrderNumber(Long orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
     }
 }
